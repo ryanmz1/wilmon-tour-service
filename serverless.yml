@@ -1,0 +1,22 @@
+service:
+  name: wilmon-tour-service
+
+plugins:
+  - serverless-bundle
+  - serverless-pseudo-parameters
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  memorySize: 256
+  stage: ${opt:stage, 'dev'}
+  region: ap-northeast-2
+  profile: dev-sls
+
+functions:
+  hello:
+    handler: src/handlers/hello.handler
+    events:
+      - http:
+          method: GET
+          path: /hello

@@ -1,5 +1,5 @@
 service:
-  name: wilmon-tour-service
+  name: wilmon-travel-service
 
 plugins:
   - serverless-bundle
@@ -8,15 +8,30 @@ plugins:
 provider:
   name: aws
   runtime: nodejs14.x
-  memorySize: 256
+  memorySize: 128
   stage: ${opt:stage, 'dev'}
   region: ap-northeast-2
   profile: dev-sls
+  environment:
+    WILMON_TRAVELS_TABLE: ${self:custom.WilmonTravelsTable.name}
+
+resources:
+  Resources:
+    WilmonTravelsTable: ${file(resources/WilmonTravelsTable.yml):Table}
+    CreateTravelLambdaRole: ${file(resources/role/CreateTravelLambdaRole.yml):Role}
 
 functions:
-  hello:
-    handler: src/handlers/hello.handler
+  createTravel:
+    handler: src/handlers/createTravel.handler
+    role: CreateTravelLambdaRole
     events:
       - http:
-          method: GET
-          path: /hello
+          method: POST
+          path: /travel
+
+custom:
+  WilmonTravelsTable:
+    name: !Ref WilmonTravelsTable
+    arn: !GetAtt WilmonTravelsTable.Arn
+  bundle:
+    linting: false

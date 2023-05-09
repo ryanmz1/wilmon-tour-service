@@ -1,0 +1,17 @@
+Statement:
+  Effect: Allow
+  Action:
+    - logs:CreateLogGroup
+    - logs:CreateLogStream
+    - logs:PutLogEvents
+    - logs:TagResource
+  Resource:
+    - !Join [
+        ':',
+        [
+          'arn:aws:logs',
+          !Ref 'AWS::Region',
+          !Ref 'AWS::AccountId',
+          'log-group:/aws/lambda/*:*:*',
+        ],
+      ]

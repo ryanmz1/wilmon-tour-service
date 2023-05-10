@@ -24,10 +24,10 @@ functions:
   createTravel:
     handler: src/handlers/createTravel.handler
     role: CreateTravelLambdaRole
-    events:
-      - http:
-          method: POST
-          path: /travel
+    # events:
+    # - http:
+    #     method: POST
+    #     path: /travel
 
 custom:
   WilmonTravelsTable:

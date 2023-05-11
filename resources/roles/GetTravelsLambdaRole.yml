@@ -1,15 +1,15 @@
 Role:
   Type: AWS::IAM::Role
   Properties:
-    RoleName: CreateTravelLambdaRole
+    RoleName: GetTravelsLambdaRole
     AssumeRolePolicyDocument:
       Version: '2012-10-17'
       Statement:
-        - ${file(statements/AssumeRoleStatement.yml):Statement}
+        - ${file(statements/LambdaAssumeRole.yml):Statement}
     Policies:
       - PolicyName: createTravelLambdaPolicy
         PolicyDocument:
           Version: '2012-10-17'
           Statement:
-            - ${file(statements/LambdaBasicStatement.yml):Statement}
-            - ${file(statements/TravelsTableStatement.yml):Statement}
+            - ${file(statements/LambdaBasicDefault.yml):Statement}
+            - ${file(statements/TravelsTableRead.yml):Statement}

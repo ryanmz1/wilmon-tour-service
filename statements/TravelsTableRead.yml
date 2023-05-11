@@ -1,0 +1,11 @@
+Statement:
+  Effect: Allow
+  Action:
+    - dynamodb:GetItem
+    - dynamodb:Query
+  Resource:
+    - ${self:custom.WilmonTravelsTable.arn}
+    - !Join [
+        '/',
+        ['${self:custom.WilmonTravelsTable.arn}', 'index', 'userIdAndDate'],
+      ]

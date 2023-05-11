@@ -18,9 +18,17 @@ provider:
 resources:
   Resources:
     WilmonTravelsTable: ${file(resources/WilmonTravelsTable.yml):Table}
-    CreateTravelLambdaRole: ${file(resources/role/CreateTravelLambdaRole.yml):Role}
+    CreateTravelLambdaRole: ${file(resources/roles/CreateTravelLambdaRole.yml):Role}
+    GetTravelsLambdaRole: ${file(resources/roles/GetTravelsLambdaRole.yml):Role}
 
 functions:
+  getTravels:
+    handler: src/handlers/getTravels.handler
+    role: GetTravelsLambdaRole
+    events:
+      - http:
+          method: GET
+          path: /travels
   createTravel:
     handler: src/handlers/createTravel.handler
     role: CreateTravelLambdaRole

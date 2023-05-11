@@ -6,6 +6,19 @@ Table:
     AttributeDefinitions:
       - AttributeName: id
         AttributeType: S
+      - AttributeName: userId
+        AttributeType: S
+      - AttributeName: createdAt
+        AttributeType: S
     KeySchema:
       - AttributeName: id
         KeyType: HASH
+    GlobalSecondaryIndexes:
+      - IndexName: userIdAndDate
+        KeySchema:
+          - AttributeName: userId
+            KeyType: HASH
+          - AttributeName: createdAt
+            KeyType: RANGE
+        Projection:
+          ProjectionType: ALL

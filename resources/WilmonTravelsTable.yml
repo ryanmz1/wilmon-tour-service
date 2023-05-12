@@ -1,7 +1,7 @@
 Table:
   Type: AWS::DynamoDB::Table
   Properties:
-    TableName: WilmonTravelsTable-${self:provider.stage}
+    TableName: WilmonTravels-${self:provider.stage}
     BillingMode: PAY_PER_REQUEST
     AttributeDefinitions:
       - AttributeName: id

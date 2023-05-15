@@ -13,3 +13,4 @@ Role:
           Statement:
             - ${file(statements/LambdaBasicDefault.yml):Statement}
             - ${file(statements/TravelsTableWrite.yml):Statement}
+            - ${file(statements/PlacesTableRead.yml):Statement}

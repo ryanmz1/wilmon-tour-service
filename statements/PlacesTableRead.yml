@@ -1,0 +1,7 @@
+Statement:
+  Effect: Allow
+  Action:
+    - dynamodb:GetItem
+    - dynamodb:Query
+  Resource:
+    - ${self:custom.TravelPlacesTable.arn}

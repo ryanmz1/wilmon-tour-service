@@ -14,8 +14,11 @@ provider:
   profile: dev-sls
   environment:
     WILMON_TRAVELS_TABLE: ${self:custom.WilmonTravelsTable.name}
-    REDIS_URL: ''
-    PLACE_IDS_SET: ''
+    TRAVEL_PLACES_TABLE: ${self:custom.TravelPlacesTable.name}
+    REDIS_HOST: ${file(secrets.yml):Redis.host}
+    REDIS_PORT: ${file(secrets.yml):Redis.port}
+    REDIS_PWD: ${file(secrets.yml):Redis.password}
+    PLACE_IDS_SET: 'TravelPlacesIds'
 
 resources:
   Resources:
@@ -44,5 +47,8 @@ custom:
   WilmonTravelsTable:
     name: !Ref WilmonTravelsTable
     arn: !GetAtt WilmonTravelsTable.Arn
+  TravelPlacesTable:
+    name: !Ref TravelPlacesTable
+    arn: !GetAtt TravelPlacesTable.Arn
   bundle:
     linting: false

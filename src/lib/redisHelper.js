@@ -16,6 +16,17 @@ function stringify(v) {
   return r;
 }
 
+export async function hGetAllValues(params) {
+  console.log('---from redis---');
+  let { key } = params;
+  key = stringify(key);
+  await redisCli.connect();
+  let res = await redisCli.HVALS(key);
+  await redisCli.quit();
+  res = res.map((v) => JSON.parse(v));
+  return res;
+}
+
 export async function updateCache(params) {
   let { key, field, value } = params;
   key = stringify(key);

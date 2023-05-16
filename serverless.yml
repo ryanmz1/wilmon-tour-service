@@ -35,6 +35,7 @@ functions:
       - http:
           method: GET
           path: /travels
+          cors: true
   createTravel:
     handler: src/handlers/createTravel.handler
     role: CreateTravelLambdaRole

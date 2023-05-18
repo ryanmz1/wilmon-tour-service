@@ -10,3 +10,6 @@ jspm_packages
 
 # secrets file
 secrets.yml
+
+# other
+mock-data

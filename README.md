@@ -1,4 +1,4 @@
-# wilmon-tour-service Serverless Framework
+# wilmon-tour-service by Serverless Framework
 
 ## What's included
 

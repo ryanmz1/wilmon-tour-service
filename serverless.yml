@@ -36,15 +36,21 @@ functions:
           method: GET
           path: /travels
           cors: true
+          authorizer: ${self:custom.authorizer}
   createTravel:
     handler: src/handlers/createTravel.handler
     role: CreateTravelLambdaRole
-    # events:
-    # - http:
-    #     method: POST
-    #     path: /travel
+    events:
+      - http:
+          method: POST
+          path: /travel
+          authorizer: ${self:custom.authorizer}
+  autoGenarateTravel:
+    handler: src/handlers/autoGenarateTravel.handler
 
 custom:
+  authorizer:
+    arn: arn:aws:cognito-idp:#{AWS::Region}:#{AWS::AccountId}:userpool/${self:provider.region}_HZe4H4pAn
   WilmonTravelsTable:
     name: !Ref WilmonTravelsTable
     arn: !GetAtt WilmonTravelsTable.Arn

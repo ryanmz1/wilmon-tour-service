@@ -18,8 +18,8 @@ async function getTravelsFromDB(userId) {
 }
 
 async function getTravels(event, context) {
-  // const { userId } = event.queryStringParameters;
-  const userId = 'visitor001';
+  // console.log('claims:', event.requestContext.authorizer.claims);
+  const userId = event.requestContext.authorizer.claims.sub;
   let travels, count;
   try {
     travels = await hGetAllValues({ key: `user:${userId}` });

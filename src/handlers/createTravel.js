@@ -2,7 +2,8 @@ import httpErrors from 'http-errors';
 import { generateTravel } from '../lib/generateTravel';
 
 async function createTravel(event, context) {
-  const userId = event.requestContext.authorizer.claims.sub;
+  // const userId = event.requestContext.authorizer.claims.sub;
+  const userId = event.requestContext.authorizer.sub;
 
   try {
     const travel = await generateTravel({ userId });

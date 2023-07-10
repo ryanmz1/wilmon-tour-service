@@ -1,0 +1,15 @@
+Role:
+  Type: AWS::IAM::Role
+  Properties:
+    RoleName: AutoGenarateTravelsRole
+    AssumeRolePolicyDocument:
+      Version: '2012-10-17'
+      Statement:
+        - ${file(statements/LambdaAssumeRole.yml):Statement}
+    Policies:
+      - PolicyName: autoGenarateTravelsRole # TODO: split whole policy to many
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - ${file(statements/LambdaBasicDefault.yml):Statement}
+            - ${file(statements/CognitoServiceGetUsers.yml):Statement}

@@ -26,6 +26,7 @@ resources:
     TravelPlacesTable: ${file(resources/TravelPlacesTable.yml):Table}
     CreateTravelLambdaRole: ${file(resources/roles/CreateTravelLambdaRole.yml):Role}
     GetTravelsLambdaRole: ${file(resources/roles/GetTravelsLambdaRole.yml):Role}
+    AutoGenarateTravelsRole: ${file(resources/roles/AutoGenarateTravelsRole.yml):Role}
 
 functions:
   getTravels:
@@ -47,10 +48,12 @@ functions:
           authorizer: ${self:custom.authorizer}
   autoGenarateTravel:
     handler: src/handlers/autoGenarateTravel.handler
+    role: AutoGenarateTravelsRole
 
 custom:
   authorizer:
-    arn: arn:aws:cognito-idp:#{AWS::Region}:#{AWS::AccountId}:userpool/${self:provider.region}_HZe4H4pAn
+    #arn: arn:aws:cognito-idp:#{AWS::Region}:#{AWS::AccountId}:userpool/${self:provider.region}_HZe4H4pAn
+    arn: arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:wilmon-travel-auth-service-${self:provider.stage}-auth
   WilmonTravelsTable:
     name: !Ref WilmonTravelsTable
     arn: !GetAtt WilmonTravelsTable.Arn

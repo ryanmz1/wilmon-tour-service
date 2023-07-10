@@ -1,0 +1,6 @@
+Statement:
+  Effect: Allow
+  Action:
+    - cognito-idp:ListUsers
+  Resource:
+    - ${self:custom.authorizer.arn}

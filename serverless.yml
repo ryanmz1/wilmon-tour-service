@@ -19,6 +19,10 @@ provider:
     REDIS_PORT: ${file(secrets.yml):Redis.port}
     REDIS_PWD: ${file(secrets.yml):Redis.password}
     PLACE_IDS_SET: 'TravelPlacesIds'
+    AUTH0_DOMAIN: ${file(secrets.yml):Auth0.domain}
+    AUTH0_CLIENT_ID: ${file(secrets.yml):Auth0.clientId}
+    AUTH0_CLIENT_SECRET: ${file(secrets.yml):Auth0.clientSecret}
+    AUTH0_AUDIENCE: ${file(secrets.yml):Auth0.audience}
 
 resources:
   Resources:
@@ -45,12 +49,13 @@ functions:
           method: POST
           path: /travel
           authorizer: ${self:custom.authorizer}
-  autoGenarateTravel:
-    handler: src/handlers/autoGenarateTravel.handler
+  autoGenarateTravels:
+    handler: src/handlers/autoGenerateTravels.handler
+    role: CreateTravelLambdaRole
 
 custom:
   authorizer:
-    arn: arn:aws:cognito-idp:#{AWS::Region}:#{AWS::AccountId}:userpool/${self:provider.region}_HZe4H4pAn
+    arn: arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:wilmon-travel-auth-service-${self:provider.stage}-auth
   WilmonTravelsTable:
     name: !Ref WilmonTravelsTable
     arn: !GetAtt WilmonTravelsTable.Arn
@@ -59,3 +64,6 @@ custom:
     arn: !GetAtt TravelPlacesTable.Arn
   bundle:
     linting: false
+    externals:
+      - superagent-proxy
+      - formidable

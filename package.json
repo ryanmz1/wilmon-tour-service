@@ -1,7 +1,7 @@
 {
-  "name": "wilmon-tour-service",
+  "name": "wilmon-travel-service",
   "version": "1.0.0",
-  "description": "wilmon-tour-service for Serverless Framework projects",
+  "description": "wilmon-travel-service for Serverless Framework projects",
   "author": "Ryan <ryanmz1@outlook.com>",
   "license": "MIT",
   "devDependencies": {
@@ -10,13 +10,14 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.6.0",
-    "serverless-bundle": "^1.3.3",
+    "serverless-bundle": "^4.3.1",
     "serverless-pseudo-parameters": "^2.5.0",
     "webpack": "^4.35.2"
   },
   "dependencies": {
     "@middy/core": "^1.0.0",
     "@middy/http-cors": "^1.0.0",
+    "auth0": "^3.5.0",
     "aws-sdk": "^2.639.0",
     "http-errors": "^1.7.3",
     "redis": "^4.0.0",

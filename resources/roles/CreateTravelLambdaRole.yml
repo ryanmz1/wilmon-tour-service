@@ -14,3 +14,4 @@ Role:
             - ${file(statements/LambdaBasicDefault.yml):Statement}
             - ${file(statements/TravelsTableWrite.yml):Statement}
             - ${file(statements/PlacesTableRead.yml):Statement}
+            - ${file(statements/MailQueueSend.yml):Statement}

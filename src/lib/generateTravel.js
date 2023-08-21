@@ -13,6 +13,7 @@ const redisCli = createClient({
 });
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
+const sqs = new AWS.SQS();
 
 async function getPlaceIdByRandom() {
   try {
@@ -67,8 +68,7 @@ async function getRandomPlace(userId) {
 //  2.1) user travels store in Redis, maybe use 'exist' operator
 // 3) if not, get the random place from db and return
 export async function generateTravel(params) {
-  const { userId } = params;
-
+  const { userId, userEmail } = params;
   try {
     let randomPlace = await getRandomPlace(userId);
     const now = new Date();
@@ -85,7 +85,6 @@ export async function generateTravel(params) {
       },
       createdAt: now.toISOString(),
     };
-
     await dynamodb
       .put({
         TableName: process.env.WILMON_TRAVELS_TABLE,
@@ -102,6 +101,17 @@ export async function generateTravel(params) {
         coordinates: travel.location.coordinates,
       },
     });
+    await sqs
+      .sendMessage({
+        QueueUrl: process.env.MAIL_QUEUE_URL,
+        MessageBody: JSON.stringify({
+          source: process.env.MAIL_SOURCE,
+          subject: 'New Travel With Wilmon',
+          recipient: userEmail,
+          body: `Your wilmon travels in ${travel.location.address}, take a look now: `,
+        }),
+      })
+      .promise();
     return travel;
   } catch (error) {
     console.log(error);

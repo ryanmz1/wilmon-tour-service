@@ -23,6 +23,8 @@ provider:
     AUTH0_CLIENT_ID: ${file(secrets.yml):Auth0.clientId}
     AUTH0_CLIENT_SECRET: ${file(secrets.yml):Auth0.clientSecret}
     AUTH0_AUDIENCE: ${file(secrets.yml):Auth0.audience}
+    MAIL_QUEUE_URL: ${self:custom.MailQueue.url}
+    MAIL_SOURCE: ${file(secrets.yml):Mail.source}
 
 resources:
   Resources:
@@ -52,6 +54,8 @@ functions:
   autoGenarateTravels:
     handler: src/handlers/autoGenerateTravels.handler
     role: CreateTravelLambdaRole
+    # events:
+    #   - schedule: cron(30 * * * ? *)
 
 custom:
   authorizer:
@@ -62,6 +66,9 @@ custom:
   TravelPlacesTable:
     name: !Ref TravelPlacesTable
     arn: !GetAtt TravelPlacesTable.Arn
+  MailQueue:
+    arn: ${cf:notification-service-${self:provider.stage}.MailQueueArn}
+    url: ${cf:notification-service-${self:provider.stage}.MailQueueUrl}
   bundle:
     linting: false
     externals:

@@ -1,6 +1,30 @@
-# wilmon-tour-service by Serverless Framework
+# Wilmon-Travel-Service by Serverless Framework
 
-## What's included
+This serverless framework application serves for Wilmon Travel.
 
-- [serverless-pseudo-parameters plugin](https://www.npmjs.com/package/serverless-pseudo-parameters): Allows you to take advantage of CloudFormation Pseudo Parameters.
-- [serverless-bundle plugin](https://www.npmjs.com/package/serverless-pseudo-parameters): Bundler based on the serverless-webpack plugin - requires zero configuration and fully compatible with ES6/ES7 features.
+- [Wilmon Travel App](https://prod.d2fl6puxokt7iu.amplifyapp.com/)
+- [Wilmon Travel Frontend Project](https://www.npmjs.com/package/serverless-pseudo-parameters)
+
+## Architecture
+
+```
+- resources
+- statements
+- src
+  - handlers
+    - autoGenerateTravels
+    - createTravel
+    - getTravels
+  - lib
+    - generateTravel
+    - redisHelper
+
+```
+
+## Dependencies
+
+```
+auth0     ^3.5.0
+aws-sdk   ^2.639.0
+redis     ^4.0.0
+```

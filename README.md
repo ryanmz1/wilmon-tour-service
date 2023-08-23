@@ -3,7 +3,7 @@
 This serverless framework application serves for Wilmon Travel.
 
 - [Wilmon Travel App](https://prod.d2fl6puxokt7iu.amplifyapp.com/)
-- [Wilmon Travel Frontend Project](https://www.npmjs.com/package/serverless-pseudo-parameters)
+- [Wilmon Travel Frontend Project](https://github.com/ryanmz1/wilmon-travel-frontend)
 
 ## Architecture
 

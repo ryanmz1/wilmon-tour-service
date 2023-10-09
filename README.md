@@ -2,7 +2,7 @@
 
 This serverless framework application serves for Wilmon Travel.
 
-- [Wilmon Travel Demo](https://prod.d2fl6puxokt7iu.amplifyapp.com/)
+- [Wilmon Travel Demo](https://prod.d2fl6puxokt7iu.amplifyapp.com/) 🎉🎉🎉
 - [Wilmon Notification Service](https://github.com/ryanmz1/wilmon-notification-service)
 - [Wilmon Auth Service](https://github.com/ryanmz1/wilmon-auth-service)
 

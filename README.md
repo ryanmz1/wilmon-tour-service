@@ -2,8 +2,9 @@
 
 This serverless framework application serves for Wilmon Travel.
 
-- [Wilmon Travel App](https://prod.d2fl6puxokt7iu.amplifyapp.com/)
-- [Wilmon Travel Frontend Project](https://github.com/ryanmz1/wilmon-travel-frontend)
+- [Wilmon Travel Demo](https://prod.d2fl6puxokt7iu.amplifyapp.com/)
+- [Wilmon Notification Service](https://github.com/ryanmz1/wilmon-notification-service)
+- [Wilmon Auth Service](https://github.com/ryanmz1/wilmon-auth-service)
 
 ## Architecture
 
@@ -20,6 +21,8 @@ This serverless framework application serves for Wilmon Travel.
     - redisHelper
 
 ```
+
+![ArchitecturePic](https://public-bucket-ryan1329.s3.ap-northeast-2.amazonaws.com/wilmon/wilmontravel.drawio.png 'Wilmon Travel')
 
 ## Dependencies
 
